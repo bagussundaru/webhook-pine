@@ -5,12 +5,12 @@ FROM python:3.9-slim
 WORKDIR /app
 
 # Salin file requirements dan instal dependensi
-# Ini memanfaatkan caching Docker agar tidak menginstal ulang setiap kali kode berubah
-COPY requirements.txt .
+# Menggunakan path absolut untuk tujuan untuk kompatibilitas maksimum
+COPY requirements.txt /app/
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Salin sisa kode aplikasi ke direktori kerja
-COPY . .
+COPY . /app/
 
 # Beritahu Docker port mana yang akan diekspos oleh aplikasi
 EXPOSE 8080
